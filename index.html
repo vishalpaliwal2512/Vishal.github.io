@@ -1,43 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Project Website</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Vishu | Creative Developer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  --card: rgba(255,255,255,0.08);
+  --text: #ffffff;
+  --accent: #00eaff;
+}
+
+.light{
+  --bg: #f4f7fb;
+  --card: rgba(0,0,0,0.06);
+  --text: #000;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.4s;
+}
+
+/* SCROLL PROGRESS BAR */
+#progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  background:var(--accent);
+  width:0%;
+  z-index:2000;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:4px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 8%;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+  transition:0.3s;
+}
+
+nav.scrolled{
+  padding:10px 8%;
+  background:rgba(0,0,0,0.6);
+}
+
+nav ul{
+  display:flex;
+  list-style:none;
+  gap:25px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  position:relative;
+}
+
+nav ul li a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:0.3s;
+}
+
+nav ul li a:hover::after{
+  width:100%;
+}
+
+.toggle{
+  cursor:pointer;
+  font-size:20px;
+}
+
+/* HERO */
+header{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+header h1{
+  font-size:3.5rem;
+}
+
+header span{
+  color:var(--accent);
+}
+
+.typing{
+  margin-top:15px;
+  font-size:1.3rem;
+  opacity:0.9;
+  min-height:30px;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 30px;
+  background:var(--accent);
+  color:black;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* SECTIONS */
+section{
+  padding:80px 10%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:2.5rem;
+  margin-bottom:50px;
+}
+
+.glass{
+  background:var(--card);
+  backdrop-filter:blur(10px);
+  padding:30px;
+  border-radius:20px;
+}
+
+.skills,.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  text-align:center;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+/* CONTACT */
+form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+input,textarea{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  outline:none;
+}
+
+button{
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  background:var(--accent);
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  background:rgba(0,0,0,0.4);
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <h2 class="logo">MyProject</h2>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+<div id="progress"></div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Simple Static Website</h1>
-    <p>This website is created for my project</p>
-    <button>Explore</button>
-  </section>
+<nav id="navbar">
+  <h3>Vishu</h3>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="toggle" onclick="toggleTheme()">🌙</div>
+</nav>
 
-  <!-- About Section -->
-  <section class="about">
-    <h2>About Project</h2>
-    <p>
-      This is a static website built using HTML, CSS and JavaScript.
-      It is easy to host and update anytime.
-    </p>
-  </section>
+<header>
+  <div>
+    <h1>Hi, I'm <span>Vishu</span></h1>
+    <div class="typing" id="typing"></div>
+    <a href="#contact" class="btn">Hire Me</a>
+  </div>
+</header>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 My Project | All rights reserved</p>
-  </footer>
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="glass">
+    Passionate developer who loves clean design, animations
+    and modern UI. Building powerful websites with creativity.
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="skills">
+    <div class="glass card">HTML5</div>
+    <div class="glass card">CSS3</div>
+    <div class="glass card">JavaScript</div>
+    <div class="glass card">C / C++</div>
+    <div class="glass card">GitHub</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects">
+    <div class="glass card">Portfolio Website</div>
+    <div class="glass card">College Project</div>
+    <div class="glass card">More Coming 🚀</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact Me</h2>
+  <div class="glass">
+    <form action="mailto:yourmail@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2026 Vishu | Built with ❤️
+</footer>
+
+<script>
+/* NAVBAR SCROLL */
+const navbar=document.getElementById("navbar");
+window.addEventListener("scroll",()=>{
+  navbar.classList.toggle("scrolled",window.scrollY>50);
+});
+
+/* THEME */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme",
+    document.body.classList.contains("light")?"light":"dark");
+}
+if(localStorage.getItem("theme")==="light"){
+  document.body.classList.add("light");
+}
+
+/* SCROLL PROGRESS */
+window.addEventListener("scroll",()=>{
+  const scrollTop=document.documentElement.scrollTop;
+  const height=document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById("progress").style.width=
+    (scrollTop/height)*100+"%";
+});
+
+/* TYPING EFFECT */
+const texts=["Web Developer","UI Designer","Future Engineer","Freelancer"];
+let index=0, char=0;
+const typing=document.getElementById("typing");
+
+function type(){
+  if(char<texts[index].length){
+    typing.textContent+=texts[index].charAt(char);
+    char++;
+    setTimeout(type,100);
+  }else{
+    setTimeout(erase,1500);
+  }
+}
+
+function erase(){
+  if(char>0){
+    typing.textContent=texts[index].substring(0,char-1);
+    char--;
+    setTimeout(erase,60);
+  }else{
+    index=(index+1)%texts.length;
+    setTimeout(type,500);
+  }
+}
+type();
+</script>
+
 </body>
 </html>

@@ -1,67 +1,226 @@
+/* =====================
+   2026 MODERN UI THEME
+===================== */
+
+:root {
+  --accent: #00eaff;
+  --accent-soft: rgba(0, 234, 255, 0.15);
+  --bg-dark: linear-gradient(135deg, #0b0f1a, #111827);
+  --bg-light: #f5f7fb;
+  --glass-dark: rgba(255, 255, 255, 0.08);
+  --glass-light: rgba(0, 0, 0, 0.06);
+  --text-dark: #ffffff;
+  --text-light: #0f172a;
+}
+
+.light {
+  --bg-dark: var(--bg-light);
+  --glass-dark: var(--glass-light);
+  --text-dark: var(--text-light);
+}
+
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
 }
 
-/* Navbar */
-.navbar {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* SCROLL PROGRESS */
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #6effff);
+  z-index: 3000;
+}
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 4px;
+  width: 100%;
+  padding: 16px 8%;
   display: flex;
   justify-content: space-between;
-  padding: 15px 50px;
-  background: #111;
-  color: white;
+  align-items: center;
+  backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2000;
+  transition: all 0.35s ease;
 }
 
-.navbar ul {
+nav.scrolled {
+  padding: 10px 8%;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+nav h3 {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+nav ul {
   list-style: none;
   display: flex;
+  gap: 28px;
 }
 
-.navbar ul li {
-  margin-left: 20px;
-}
-
-.navbar ul li a {
+nav ul li a {
   color: white;
   text-decoration: none;
+  font-weight: 500;
+  position: relative;
 }
 
-/* Hero */
-.hero {
-  height: 80vh;
-  background: linear-gradient(to right, #4facfe, #00f2fe);
-  color: white;
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: 0.35s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+.toggle {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* HERO */
+header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 700;
+}
+
+header span {
+  color: var(--accent);
+}
+
+.typing {
+  margin-top: 14px;
+  font-size: 1.3rem;
+  opacity: 0.85;
+  min-height: 32px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 14px 36px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, var(--accent), #6effff);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px var(--accent-soft);
+}
+
+/* SECTIONS */
+section {
+  padding: 100px 10%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  margin-bottom: 60px;
+  font-weight: 600;
+}
+
+/* GLASS CARD */
+.glass {
+  background: var(--glass-dark);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  padding: 36px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* GRID */
+.skills,
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* CONTACT */
+form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 18px;
 }
 
-.hero h1 {
-  font-size: 40px;
-}
-
-.hero button {
-  margin-top: 15px;
-  padding: 10px 25px;
+input,
+textarea {
+  padding: 14px 16px;
+  border-radius: 14px;
   border: none;
-  background: white;
-  color: black;
-  cursor: pointer;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
 }
 
-/* About */
-.about {
-  padding: 50px;
-  text-align: center;
+textarea {
+  resize: none;
 }
 
-/* Footer */
+/* FOOTER */
 footer {
-  background: #111;
-  color: white;
+  padding: 30px;
   text-align: center;
-  padding: 15px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
 }
